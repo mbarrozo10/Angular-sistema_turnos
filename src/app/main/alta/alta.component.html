@@ -1,0 +1,60 @@
+<mat-card>
+    <mat-card-content>
+        <h4>Alta de usuarios</h4>
+        <mat-form-field>
+            <mat-label>Tipo</mat-label>
+            <mat-select  [(value)]="selectedValue" (selectionChange)="onSelectChange()">
+                <mat-option value="usuario" >Usuario </mat-option>
+                <mat-option  value="admin">Administrador </mat-option>
+                <mat-option  value="especialista">Especialista </mat-option>
+            </mat-select>
+            </mat-form-field>      
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="nombre" [(ngModel)]="nombre">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Apellido</mat-label>
+            <input matInput placeholder="apellido" [(ngModel)]="apellido">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Edad</mat-label>
+            <input matInput type="number" placeholder="edad" [(ngModel)]="edad">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>DNI</mat-label>
+            <input matInput type="number" placeholder="00000000"[(ngModel)]="dni">
+        </mat-form-field>
+       
+        <div [hidden]="usuario">
+        <mat-form-field>
+            <mat-label>Obra social</mat-label>
+            <mat-select  [(value)]="obra">
+                <mat-option *ngFor="let x of obras" [value]="x.nombre" >{{x.nombre}} </mat-option>
+            </mat-select>
+            </mat-form-field>  
+        </div>
+        <div [hidden]="especialista">
+            <mat-form-field>
+                <mat-label>Especialidad</mat-label>
+                <mat-select  [(value)]="especialidad"  (selectionChange)="AgregarEspecialidad()">
+                    <mat-option *ngFor="let x of especialidades" [value]="x.nombre" >{{x.nombre}} </mat-option>
+                    <mat-option value="otro" >Otro</mat-option>
+                </mat-select>
+                </mat-form-field>  
+            </div>
+        <mat-form-field>
+            <mat-label>Correo</mat-label>
+            <input matInput type="email" placeholder="abc@dominio.com" [(ngModel)]="correo">
+        </mat-form-field>   
+        <mat-form-field>
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" placeholder="Contraseña" [(ngModel)]="pass">
+        </mat-form-field>   
+            <label for="file" class="label"></label>
+            <button  mat-raised-button color="primary" class="button" (click)="inputImageProfile.click()">Foto</button>
+            <input hidden #inputImageProfile type="file" (change)="newImage($event)" multiple>
+        <button (click)="registrar()" mat-raised-button color="primary">Guardar</button>
+
+    </mat-card-content>
+  </mat-card>

@@ -1,0 +1,13 @@
+.card-select{
+    display:inline flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    // margin-top: -200px;
+}
+
+mat-card, mat-list-item{
+    margin-bottom: 20px;
+}
+
+

@@ -18,6 +18,15 @@
 					<input (click)="login()" type="submit" class="button" value="Ingresar">
 				</div>
 				<div class="hr"></div>
+				<div class="group">
+					<input (click)="inicioRapido('lupin@elgato.com','hola123')" type="submit" class="button" value="Usuario Admin">
+				</div>
+				<div class="group">
+					<input (click)="inicioRapido('pepe@pepe.com','hola123')" type="submit" class="button" value="usuario Normal">
+				</div>
+				<div class="group">
+					<input (click)="inicioRapido('especialista@espec.com','hola123')" type="submit" class="button" value="usuario especialista">
+				</div>
 				<!-- agregar boton acceso rapido -->
 			</div>
 			<div class="sign-up-htm">
@@ -29,24 +38,24 @@
                     </select>
 				</div>
 				<div class="group">
-					<label for="nombre" class="label">Nombre</label>
-					<input id="nombre" type="text" class="input">
+					<label for="nombre" class="label" >Nombre</label>
+					<input [(ngModel)]="nombre"name="nombre" id="nombre" type="text" class="input">
 				</div>
                 <div class="group">
 					<label for="apellido" class="label">Apellido</label>
-					<input id="apellido" type="text" class="input">
+					<input [(ngModel)]="apellido" name="apellido" id="apellido" type="text" class="input">
 				</div>
                 <div class="group">
 					<label for="edad" class="label">Edad</label>
-					<input id="edad" type="number" class="input">
+					<input [(ngModel)]="edad"  name="edad" id="edad" type="number" class="input">
 				</div>
                 <div class="group">
 					<label for="dni" class="label">DNI</label>
-					<input id="dni" type="number" class="input">
+					<input [(ngModel)]="dni" name="edad" id="dni" type="number" class="input">
 				</div>
                 <div [hidden]="!registrarUsuario" class="group">
 					<label for="obra" class="label">Obra social:</label>
-					<select  id="obra" type="" class="input" >
+					<select [(ngModel)]="obraSeleccionada"  id="obra" type="" class="input" >
                         <option selected  value="">Seleccione una obra</option>
                         <option   *ngFor="let x of obras" selected  [value]="x['nombre']">{{x['nombre']}}</option>
                       
@@ -54,18 +63,19 @@
 				</div>
                 <div [hidden]="registrarUsuario" class="group">
 					<label for="obra" class="label">Especialidad</label>
-					<select id="obra" type="" class="input" >
+					<select [(ngModel)]="especialidad" id="obra" type="" class="input" (change)="AgregarEspecialidad()">
                         <option selected  value="">Seleccione una especialidad</option>
-                        <option   *ngFor="let x of especialidades" selected  [value]="x['nombre']">{{x['nombre']}}</option>
+                        <option   *ngFor="let x of especialidades"  [value]="x['nombre']">{{x['nombre']}}</option>
+						<option selected  value="otro">Otro</option>
                     </select>
 				</div>
                 <div class="group">
 					<label for="pass" class="label">Email Address</label>
-					<input id="pass" type="text" class="input">
+					<input id="pass" [(ngModel)]="correo" type="text" class="input">
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Password</label>
-					<input id="pass" type="password" class="input" data-type="password">
+					<input id="pass" [(ngModel)]="pass" type="password" class="input" data-type="password">
 				</div>
                 <div class="group">
 					<label for="file" class="label">{{imagenes}}</label>
@@ -74,10 +84,9 @@
                     
                 </div>
 				<div class="group">
-					<input  type="submit" class="button" value="Registrarse">
+					<input (click)="registrar()" type="submit" class="button" value="Registrarse">
 				</div>
 				<div class="hr"></div>
-			
 			</div>
 		</div>
 	</div>
