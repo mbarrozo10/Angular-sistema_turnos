@@ -1,12 +1,12 @@
 import { Injectable, Pipe } from '@angular/core';
 import {getAuth, Auth, createUserWithEmailAndPassword , signInWithEmailAndPassword, signOut, updateProfile,sendEmailVerification,signInWithCredential} from '@angular/fire/auth';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData } from '@angular/fire/firestore';
 @Injectable({
     providedIn: 'root'
 })
 
 export class UserService {
- 
+    public userUsed:any
     constructor(private auth : Auth, private firestore: Firestore, private auth2: Auth) {
     }
 
@@ -64,6 +64,7 @@ retornarUsuario(){
 }
 login(email: any, password: any){
     const user = signInWithEmailAndPassword(this.auth,email,password);
+    this.conseguirUsuario();
     return user;
 }
 
@@ -76,5 +77,15 @@ async verificarCorreo(user: any){ {
     if(this.auth.currentUser != null)
     sendEmailVerification(user)
     }
+}
+
+async conseguirUsuario(){
+    const placeRef = collection(this.firestore, "usuarios")
+    collectionData(placeRef).subscribe(data =>{
+        data.forEach(data =>{
+            if(this.auth.currentUser?.email==data['email']){
+                this.userUsed = data;
+    }})
+    })
 }
 }

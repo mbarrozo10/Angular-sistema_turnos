@@ -44,6 +44,7 @@ constructor(private auth: UserService, private router: Router, private firestore
       });
     });
   }
+  //esto sirve para bla bla bla bla
   async login() {
     if (this.correo != "" && this.pass != "") {
       try {
