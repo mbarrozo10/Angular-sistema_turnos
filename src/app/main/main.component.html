@@ -1,33 +1,33 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Link </a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
-      <div [hidden]="admin">
-      <a mat-list-item routerLink="admin" >Consola Admin</a>
-      </div>
-      <a mat-list-item (click)="Salir()">Salir</a>
-    </mat-nav-list>
-  </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
+    
       <span>Bienvenido: {{usuario['nombre']}}</span>
+      <div class="navbar-list">
+        <mat-nav-list >
+          <button hidden mat-button [matMenuTriggerFor]="menu">Menu</button>
+          <mat-menu #menu="matMenu">
+          </mat-menu>
+          <div class="row">
+            <!-- <div>
+              <button id="salir" mat-menu-item href="#">Menu principal</button>
+            </div> -->
+            <div>
+              <button id="salir" mat-menu-item routerLink="turnos">Mis turnos</button>
+            </div>
+            <div>
+              <button id="salir" mat-menu-item routerLink="perfil">Mi Perfil</button>
+            </div>
+            <div  [hidden]="admin">
+              <button id="salir" mat-menu-item routerLink="admin" >Consola Admin</button>
+            </div>
+            <div class="Salir">
+              <button id="salir" mat-menu-item (click)="Salir()">Salir</button>
+            </div>
+        </div>
+      </mat-nav-list>
+    </div>
     </mat-toolbar>
     <router-outlet></router-outlet>
-    <!-- <app-admin-usuarios></app-admin-usuarios> -->
-    <!-- Add Content Here -->
   </mat-sidenav-content>
 </mat-sidenav-container>

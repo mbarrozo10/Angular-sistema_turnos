@@ -1,0 +1,80 @@
+<h1>Dar alta turnos</h1>
+  <mat-stepper linear="true" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Elija la especialidad</ng-template>
+        <mat-form-field>
+          <mat-label>Especialidad</mat-label>
+            <mat-select [(ngModel)]="selectedValue" name="food" formControlName="firstCtrl">
+                <mat-option *ngFor="let x of especialidades" [value]="x['nombre']">{{x.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="range" label="Fill out your address">
+      <form [formGroup]="range">
+        <ng-template matStepLabel>Elija los horarios</ng-template>
+        <mat-grid-list cols="4" rowHeight="2:1">
+          <mat-grid-tile>
+            <mat-form-field>
+              <mat-label>Elegir fecha</mat-label>
+                  <mat-date-range-input  [rangePicker]="picker">
+                    <input matStartDate formControlName="start" placeholder="Start date">
+                    <input matEndDate formControlName="end" placeholder="End date" >
+                  </mat-date-range-input>
+                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-date-range-picker #picker></mat-date-range-picker>     
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field>
+              <mat-label>Inicio de la jornada: </mat-label>
+                <mat-select [(ngModel)]="horarioInicial" name="food" formControlName="horarioInicial">
+                    <mat-option *ngFor="let x of horarios" [value]="x">{{x}}</mat-option>
+                </mat-select>
+            </mat-form-field> 
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field>
+              <mat-label>Finalizacion de la jornada: </mat-label>
+                <mat-select [(ngModel)]="horarioFinal" name="food" formControlName="horarioFinal">
+                    <mat-option *ngFor="let x of horarios" [value]="x">{{x}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field>
+              <mat-label>Duracion de cada turno: </mat-label>
+                <mat-select [(ngModel)]="duracion" name="food" formControlName="duracion">
+                  <mat-option value="0.5">30 min</mat-option>
+                    <mat-option value="1">1 Hora</mat-option>
+                    <mat-option value="1.5">1 Hora y media</mat-option>
+                    <mat-option value="2">2 Horas</mat-option>
+                </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <div>
+          <button mat-button matStepperPrevious>Atras</button>
+          <button mat-button matStepperNext (click)="mostrar()">Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Confirmar</ng-template>
+      <p>Los turnos son los siguiente:</p>
+      <mat-list role="list">
+        <mat-list-item role="listitem">Especialidad: {{selectedValue}}</mat-list-item>
+        <mat-list-item role="listitem">Dias: {{range.value.start  | fecha}} al {{range.value.end | fecha}}</mat-list-item>
+        <mat-list-item role="listitem">Horario de: {{range.value.horarioInicial}} a {{range.value.horarioFinal}} </mat-list-item>
+        <mat-list-item role="listitem">Duracion: {{range.value.duracion}}H </mat-list-item>
+      </mat-list>
+      <div>
+        <button mat-button matStepperPrevious>Atras</button>
+        <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+      </div>
+    </mat-step>
+  </mat-stepper>

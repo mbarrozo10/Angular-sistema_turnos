@@ -49,9 +49,9 @@ constructor(private auth: UserService, private router: Router, private firestore
     if (this.correo != "" && this.pass != "") {
       try {
         const user = await this.auth.login(this.correo, this.pass);
-        console.log(user);
+        // console.log(user);
         const usuario:any = await this.verificarUsuario(user);
-  
+        this.auth.conseguirUsuario();
         if (usuario['tipo'] == "user" && !user.user.emailVerified) {
           Swal.fire({
             icon: "error",
@@ -86,10 +86,9 @@ constructor(private auth: UserService, private router: Router, private firestore
     const placeref = collection(this.firestore, 'usuarios');
     return new Promise((resolve) => {
       collectionData(placeref).subscribe((data) => {
-        console.log("Verificar");
         for (const x of data) {
           if (x['correo'] === user.user.email) {
-            console.log(x);
+            // console.log(x);
             resolve(x); 
             return;
           }

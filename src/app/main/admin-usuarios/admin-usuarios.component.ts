@@ -13,7 +13,7 @@ export class AdminUsuariosComponent implements OnInit {
   admins:any[]=[]
   especialistas:any[]=[]
   listaUsuarios:any[]=[]
-  selectedValue="Usuarios"
+  selectedValue="usuario"
   p:any;
   alternar:boolean=true;
 
@@ -39,6 +39,7 @@ export class AdminUsuariosComponent implements OnInit {
                 break;
             } 
           });
+          this.onSelectChange()
           console.log(this.listaUsuarios);
         })
         // this.listaUsuarios=this.usuarios

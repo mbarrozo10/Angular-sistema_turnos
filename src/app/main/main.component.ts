@@ -1,17 +1,18 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-
+import { MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
   usuario:any={
     nombre: ''
@@ -23,9 +24,17 @@ export class MainComponent {
       shareReplay()
     );
 
-    constructor(private service : UserService, private router: Router, private firestore: Firestore){
+    constructor(private service : UserService, private router: Router, private firestore: Firestore, public dialog: MatDialog){
       this.Actualzar();
     }
+  async ngOnInit() {
+    this.dialog.open(DialogElementsExampleDialog,{disableClose:true});
+    this.router.navigateByUrl("main/perfil",{replaceUrl:true});
+    setTimeout(() => {
+      this.dialog.closeAll();
+    }, 2000);
+    this.service.conseguirUsuario();
+  }
 
     Actualzar(){
       const placeref= collection(this.firestore, 'usuarios');
@@ -48,3 +57,11 @@ export class MainComponent {
       this.router.navigateByUrl('login',{replaceUrl:true})
     }
 }
+
+@Component({
+  selector: 'dialog-elements-example-dialog',
+  templateUrl: 'dialog-elements-example-dialog.html',
+  standalone: true,
+  imports: [MatDialogModule,MatProgressSpinnerModule],
+})
+export class DialogElementsExampleDialog {}

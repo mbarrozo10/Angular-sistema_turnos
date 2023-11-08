@@ -30,9 +30,7 @@ register (email: string, password : string, displayName: string): any{
     }
 }
 registerSinLoguear (email: string, password : string, displayName: string): any{
-    // const x= getAuth()
-    // console.log(x)
-    // console.log(this.auth)
+
     const correo=this.auth.currentUser?.email;
     if(email != undefined && password != undefined && displayName !=undefined){
         const varr= createUserWithEmailAndPassword(this.auth2,email, password);
@@ -42,8 +40,6 @@ registerSinLoguear (email: string, password : string, displayName: string): any{
                 })
                 this.verificarCorreo(userG.user);   
                  this.login(correo,"hola123")
-                console.log(this.auth)
-                // this.auth = x
               }
         ).catch((error) => {    
                 return "retorno";
@@ -62,9 +58,11 @@ retornarUsuario(){
         return 'null';
     }
 }
-login(email: any, password: any){
-    const user = signInWithEmailAndPassword(this.auth,email,password);
-    this.conseguirUsuario();
+async login(email: any, password: any){
+    const user =  signInWithEmailAndPassword(this.auth,email,password);
+    user.then(() => {
+        this.conseguirUsuario()
+    })
     return user;
 }
 
@@ -73,19 +71,24 @@ logout(){
 }
 
 async verificarCorreo(user: any){ {
-    console.log(user)
     if(this.auth.currentUser != null)
     sendEmailVerification(user)
     }
 }
 
 async conseguirUsuario(){
-    const placeRef = collection(this.firestore, "usuarios")
-    collectionData(placeRef).subscribe(data =>{
-        data.forEach(data =>{
-            if(this.auth.currentUser?.email==data['email']){
-                this.userUsed = data;
-    }})
-    })
+    return new Promise((resolve, reject) => {
+        const placeRef = collection(this.firestore, "usuarios");
+        const unsubscribe = collectionData(placeRef).subscribe((data) => {
+          data.forEach((x) => {
+            if (this.auth.currentUser?.email == x['correo']) {
+              this.userUsed = x;
+              console.log(this.auth.currentUser);
+              resolve(x);
+            }
+          });
+          reject('Error'); 
+        });
+      });
 }
 }

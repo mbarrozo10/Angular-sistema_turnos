@@ -1,27 +1,30 @@
-
-<mat-grid-list cols="2" rowHeight="1000px">
-    <mat-grid-tile>
-        <div class="card-select">
-
-        <mat-card>
-            <mat-card-content>
-                <h4>Tipo de usuarios</h4>
-                    <mat-form-field>
-                    <mat-label>Tipo</mat-label>
-                    <mat-select  [(value)]="selectedValue" (selectionChange)="onSelectChange()">
-                        <mat-option value="usuario" >Usuarios </mat-option>
-                        <mat-option  value="admin">Administradores </mat-option>
-                        <mat-option  value="especialista">Especialistas </mat-option>
-                    </mat-select>
-                    </mat-form-field>                   
-            </mat-card-content>
-          </mat-card>
-          <mat-card>
+<mat-grid-list cols="2" rowHeight="100px">
+    <mat-grid-tile rowspan="2">
+        <div >
+            <mat-card class="selector">
+                <mat-card-content>
+                    <h4>Tipo de usuarios</h4>
+                        <mat-form-field>
+                        <mat-label>Tipo</mat-label>
+                        <mat-select  [(value)]="selectedValue" (selectionChange)="onSelectChange()">
+                            <mat-option  value="usuario" >Usuarios </mat-option>
+                            <mat-option  value="admin">Administradores </mat-option>
+                            <mat-option  value="especialista">Especialistas </mat-option>
+                        </mat-select>
+                        </mat-form-field>                   
+                </mat-card-content>
+            </mat-card>
+        </div>
+ </mat-grid-tile>
+    <mat-grid-tile rowspan="10" class="lista">
+        <app-alta></app-alta>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="8">
+        <mat-card class="test">
             <mat-card-content>      
                 <h3>Usuarios:</h3>
                 <div [hidden]="!alternar">
                     <mat-list>
-                       
                     <mat-list-item *ngFor="let x of listaUsuarios">
                         <span matListItemTitle>{{x.nombre}} {{x.apellido}}</span>
                         <span matListItemLine>Correo: {{x.correo}}</span>
@@ -40,24 +43,16 @@
                             <span matListItemLine>Especialidad: {{x.especialidad}}</span>
                             <span matListItemLine>Habilitado: {{x.habilitado}}
 
-                               <button (click)="cambiarEstado(x)" class="icono" mat-icon-button color="primary">
+                                <button (click)="cambiarEstado(x)" class="icono" mat-icon-button color="primary">
                                 <mat-icon *ngIf="x.habilitado; else habilitadoFalse">cancel</mat-icon>
                                 <ng-template #habilitadoFalse><mat-icon>check</mat-icon></ng-template>
-                              </button>
+                                </button>
                             </span>
                         </mat-list-item>
                         </mat-list>     
                     </div>
             </mat-card-content>
           </mat-card>
-
-          
-        </div>
-
-        
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-alta></app-alta>
     </mat-grid-tile>
   </mat-grid-list>
 

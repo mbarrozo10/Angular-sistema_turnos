@@ -63,11 +63,16 @@
 				</div>
                 <div [hidden]="registrarUsuario" class="group">
 					<label for="obra" class="label">Especialidad</label>
-					<select [(ngModel)]="especialidad" id="obra" type="" class="input" (change)="AgregarEspecialidad()">
+					<select  [(ngModel)]="especialidad" id="obra" type="" class="input" (change)="AgregarEspecialidad()">
                         <option selected  value="">Seleccione una especialidad</option>
                         <option   *ngFor="let x of especialidades"  [value]="x['nombre']">{{x['nombre']}}</option>
 						<option selected  value="otro">Otro</option>
                     </select>
+					<!-- <mat-select multiple  class="input">
+						<mat-option selected value="">Selecciones especialidades</mat-option>
+						<mat-option *ngFor="let x of especialidades"  [value]="x['nombre']">{{x['nombre']}}</mat-option>
+						<mat-option value="otro" >Otro</mat-option>
+					  </mat-select> -->
 				</div>
                 <div class="group">
 					<label for="pass" class="label">Email Address</label>

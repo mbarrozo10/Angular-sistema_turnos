@@ -1,13 +1,19 @@
-.card-select{
-    display:inline flex;
+
+.tile{
+    display: flex;
     flex-direction: column;
-    justify-content: left;
-    align-items: center;
-    // margin-top: -200px;
+    // margin-top: -400px;
 }
 
 mat-card, mat-list-item{
     margin-bottom: 20px;
 }
 
+.lista{
+    margin-top: -100px;
+}
 
+
+.test{
+    margin-top: -100px;
+}

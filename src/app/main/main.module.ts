@@ -12,11 +12,18 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { PerfilComponent } from './perfil/perfil.component';
+import { TurnosComponent } from './turnos/turnos.component';
 
 @NgModule({
   declarations: [
     AdminUsuariosComponent,
-    AltaComponent
+    AltaComponent,
+    PerfilComponent,
+    TurnosComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +35,10 @@ import {MatButtonModule} from '@angular/material/button';
     MatSelectModule,
     MatListModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule,
+    MatButtonToggleModule,
+    MatToolbarModule
   ]
 })
 export class MainModule { }

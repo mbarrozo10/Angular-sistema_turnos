@@ -6,10 +6,11 @@ export const adminGuard: CanActivateFn = (route, state) => {
   const authService = inject(UserService);
   const router = inject(Router);
   const { userUsed } = authService;
-
+  const rol= route.data 
+  console.log(rol)
   console.log('guard', userUsed);
   try{
-  if (userUsed['tipo']!='admin') {
+  if (userUsed['tipo']!=rol['role']) {
     router.navigateByUrl('/main');
     return false;
   }}
