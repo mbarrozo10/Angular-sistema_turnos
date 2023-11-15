@@ -14,7 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
-import { FechaPipe } from 'src/app/pipes/fecha.pipe';
+import { FechaPipe } from '../../pipes/fecha.pipe';
 
 @NgModule({
   declarations: [

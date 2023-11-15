@@ -17,13 +17,17 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { PerfilComponent } from './perfil/perfil.component';
 import { TurnosComponent } from './turnos/turnos.component';
+import { FechaPipe } from '../pipes/fecha.pipe';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AdminUsuariosComponent,
     AltaComponent,
     PerfilComponent,
-    TurnosComponent
+    TurnosComponent,
+    HomeComponent,
+    // FechaPipe
   ],
   imports: [
     CommonModule,

@@ -29,7 +29,7 @@ export class MainComponent implements OnInit {
     }
   async ngOnInit() {
     this.dialog.open(DialogElementsExampleDialog,{disableClose:true});
-    this.router.navigateByUrl("main/perfil",{replaceUrl:true});
+    this.router.navigateByUrl("main/home",{replaceUrl:true});
     setTimeout(() => {
       this.dialog.closeAll();
     }, 2000);

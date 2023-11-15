@@ -1,3 +1,5 @@
+<body>
+  
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav-content>
     <mat-toolbar color="primary">
@@ -12,6 +14,9 @@
             <!-- <div>
               <button id="salir" mat-menu-item href="#">Menu principal</button>
             </div> -->
+            <div>
+              <button id="salir" mat-menu-item routerLink="home">Inicio</button>
+            </div>
             <div>
               <button id="salir" mat-menu-item routerLink="turnos">Mis turnos</button>
             </div>
@@ -31,3 +36,5 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+</body>

@@ -11,16 +11,17 @@ a{color:inherit;text-decoration:none}
 
 .login-wrap{
 	width:100%;
-    height:600px;
+    height:900px;
 	margin:auto;
-	max-width:535px;
-	min-height:400px;
+	max-width:525px;
+	min-height:670px;
 	position:relative;
-		box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+	// background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 .login-html{
 	width:100%;
-	height:600px;
+	height:900px;
 	position:absolute;
 	padding:90px 70px 50px 70px;
 	background:rgba(40,57,101,.9);
@@ -157,34 +158,27 @@ option {
     margin-top: -40px;
 }
 
-.row{
+.seleccion{
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
-}
-
-.col, .col2{
-	margin :10px
-}
-
-.col2{
-	margin-top: 30px;
-}
-
-.vertical-line {
-	border-left: 2px solid #545454; /* Puedes ajustar el grosor y color del borde según tus necesidades */
-	height: 200px; /* Puedes ajustar la altura según tus necesidades */
-	margin: 0 auto; /* Centra la línea en el contenedor */
-	margin-top: 20px;
-  }
-
-.button2{
-	background:#1161ee;
-	width: 60px;
-	height: 60px;
-	.imagenB{
-		width: 50px;
-		height: 50px;
+  flex-direction: column; /* Puedes usar 'row' si quieres que los botones estén uno al lado del otro horizontalmente */
+  align-items: stretch;
+  height: 100vh;
+	img{
+		width: 100%;
+		height: 100%;
+		position: absolute;
 	}
 }
+.test {
+	flex: 1; /* Esto hace que 'test' ocupe todo el espacio disponible */
+	display: flex;
+	justify-content: space-between; /* Esto distribuye los botones a ambos lados del contenedor 'test' */
+	height: 1000px;
+  }
+  
 
+ .button2{
+	height: 100%;
+	flex:1;
+	background-color: rgba(0, 0, 0, 0.5);
+  }

@@ -22,12 +22,12 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
 import { FechaPipe } from './pipes/fecha.pipe';
+import { RegistroComponent } from './registro/registro.component';
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    FechaPipe,
-
+    // FechaPipe
   ],
   imports: [
     BrowserModule,

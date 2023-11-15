@@ -1,0 +1,74 @@
+<body>
+<ng-container *ngIf="eleccion">
+<div class="form">
+    <div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" (click)="login()"><label for="tab-1" class="tab">Iniciar Sesion</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">Registrarse</label>
+            <div class="login-form">
+                <div class="sign-up-htm">
+                    <div class="group">
+                        <label for="nombre" class="label" >Nombre</label>
+                        <input [(ngModel)]="nombre"name="nombre" id="nombre" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="apellido" class="label">Apellido</label>
+                        <input [(ngModel)]="apellido" name="apellido" id="apellido" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="edad" class="label">Edad</label>
+                        <input [(ngModel)]="edad"  name="edad" id="edad" type="number" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="dni" class="label">DNI</label>
+                        <input [(ngModel)]="dni" name="edad" id="dni" type="number" class="input">
+                    </div>
+                    <div [hidden]="!registrarUsuario" class="group">
+                        <label for="obra" class="label">Obra social:</label>
+                        <select [(ngModel)]="obraSeleccionada"  id="obra" type="" class="input" >
+                            <option selected  value="">Seleccione una obra</option>
+                            <option   *ngFor="let x of obras" selected  [value]="x['nombre']">{{x['nombre']}}</option>
+                          
+                        </select>
+                    </div>
+                    <div [hidden]="registrarUsuario" class="group">
+                        <label for="obra" class="label">Especialidad</label>
+                        <select  [(ngModel)]="especialidad" id="obra" type="" class="input" (change)="AgregarEspecialidad()">
+                            <option selected  value="">Seleccione una especialidad</option>
+                            <option   *ngFor="let x of especialidades"  [value]="x['nombre']">{{x['nombre']}}</option>
+                            <option selected  value="otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Email Address</label>
+                        <input id="pass" [(ngModel)]="correo" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Password</label>
+                        <input id="pass" [(ngModel)]="pass" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <label for="file" class="label">{{imagenes}}</label>
+                        <button class="button" (click)="inputImageProfile.click()">Foto</button>
+                        <input hidden #inputImageProfile type="file" (change)="newImage($event)" multiple>
+                        
+                    </div>
+                    <div class="group">
+                        <input (click)="registrar()" type="submit" class="button" value="Registrarse">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="!eleccion">
+    <div class="seleccion">
+        <img src="../../assets/fondo.jpg" alt="">
+        <div class="test">
+            <button mat-button class="button2" (click)="AbrirRegistro('especialista')"></button>
+            <button mat-button class="button2" (click)="AbrirRegistro('usuario')"></button>
+        </div>
+    </div>
+</ng-container>
+</body>
