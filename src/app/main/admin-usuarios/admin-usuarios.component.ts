@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Firestore, collection, collectionData, deleteDoc, doc, getFirestore, onSnapshot, query, updateDoc, where } from '@angular/fire/firestore';
+import { ExcelService } from 'src/app/services/excel.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -13,6 +14,7 @@ export class AdminUsuariosComponent implements OnInit {
   admins:any[]=[]
   especialistas:any[]=[]
   listaUsuarios:any[]=[]
+  usuariosExportar:any[]=[]
   selectedValue="usuario"
   p:any;
   alternar:boolean=true;
@@ -21,7 +23,7 @@ export class AdminUsuariosComponent implements OnInit {
       const place= collection(this.firestore,'usuarios');
       collectionData(place).subscribe(data =>
         {
-          this.listaUsuarios = []
+          this.usuariosExportar = data
           this.usuarios=[]
           this.admins = []
           this.especialistas = []
@@ -40,11 +42,10 @@ export class AdminUsuariosComponent implements OnInit {
             } 
           });
           this.onSelectChange()
-          console.log(this.listaUsuarios);
+          console.log(this.usuariosExportar);
         })
-        // this.listaUsuarios=this.usuarios
       };
-    constructor(private firestore: Firestore, private authservice: UserService){
+    constructor(private firestore: Firestore, private excel: ExcelService){
       
     }
 
@@ -96,6 +97,9 @@ export class AdminUsuariosComponent implements OnInit {
           Swal.fire('No se cambio nada!', '', 'info')}
         })
    
+    }
+    Descargar(){
+      this.excel.generateReportWithDict(this.usuariosExportar, 'bkp')
     }
      
 }

@@ -21,13 +21,15 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
-import { FechaPipe } from './pipes/fecha.pipe';
-import { RegistroComponent } from './registro/registro.component';
+import { RecaptchaModule } from "ng-recaptcha";
+import { NgHcaptchaModule } from 'ng-hcaptcha';
+import { HoraPipe } from './pipes/hora.pipe';
+import { FechaDosPipe } from './pipes/fecha-dos.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    // FechaPipe
+    // HoraPipe,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,9 @@ import { RegistroComponent } from './registro/registro.component';
     MatDialogModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RecaptchaModule,
+    NgHcaptchaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

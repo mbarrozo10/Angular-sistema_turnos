@@ -1,4 +1,6 @@
 <body>
+    <script src="https://js.hcaptcha.com/1/api.js?hl=fr" async defer></script>
+
 <ng-container *ngIf="eleccion">
 <div class="form">
     <div class="login-wrap">
@@ -51,8 +53,8 @@
                         <label for="file" class="label">{{imagenes}}</label>
                         <button class="button" (click)="inputImageProfile.click()">Foto</button>
                         <input hidden #inputImageProfile type="file" (change)="newImage($event)" multiple>
-                        
                     </div>
+                    <ng-hcaptcha  [(ngModel)]="captcha"></ng-hcaptcha>
                     <div class="group">
                         <input (click)="registrar()" type="submit" class="button" value="Registrarse">
                     </div>

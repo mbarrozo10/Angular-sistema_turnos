@@ -2,10 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Firestore, addDoc, collection, collectionData } from '@angular/fire/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MatDatepickerInputEvent, MatDatepickerIntl } from '@angular/material/datepicker';
+import {  MatDatepickerIntl } from '@angular/material/datepicker';
 import { UserService } from 'src/app/services/user.service';
-import Swal from 'sweetalert2';
-import { format, addDays, isBefore, isEqual } from 'date-fns';
+import {  addDays, isBefore, isEqual } from 'date-fns';
 
 @Component({
   selector: 'app-vista-especialista',
@@ -138,7 +137,7 @@ export class VistaEspecialistaComponent implements OnInit {
                 doctor: this.auth.retornarUsuario(),
                 especialidad: this.especialidad,
                 horario: hf,
-                fecha:fecha,
+                fecha:fecha.toString(),
                 estado: "libre",
               }
               console.log(data)
@@ -148,7 +147,7 @@ export class VistaEspecialistaComponent implements OnInit {
                 doctor: this.auth.retornarUsuario(),
                 especialidad: this.especialidad,
                 horario: horario,
-                fecha:fecha,
+                fecha:fecha.toString(),
                 estado: "libre",
               }
               console.log(data)

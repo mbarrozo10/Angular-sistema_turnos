@@ -18,6 +18,7 @@ export class MainComponent implements OnInit {
     nombre: ''
   }
   admin:boolean = true;
+  espec:boolean = true;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -46,6 +47,8 @@ export class MainComponent implements OnInit {
            this.usuario= x;
            if(this.usuario.tipo=='admin'){
             this.admin=false;
+           }else if(this.usuario.tipo=='especialista'){
+            this.espec=false
            }
          }
        }

@@ -147,7 +147,8 @@ async guardarInfo(imagenes: any) {
 }
 
 registrar(){
-  if(this.nombre!="" && this.apellido!="" && this.dni!=0 && (this.edad >18 && this.edad <100) && this.correo!="" && this.pass!=""){
+  console.log(this.captcha)
+  if(this.nombre!="" && this.apellido!="" && this.dni!=0 && (this.edad >18 && this.edad <100) && this.correo!="" && this.pass!="" &&this.captcha!=""){
     this.upload()
   }else{
     Swal.fire({
@@ -201,5 +202,11 @@ registrar(){
       this.imagenes="Elija 1 imagen para su perfil"
       this.registrarUsuario = false}
     this.eleccion=true;
+  }
+
+  captcha:string=""
+  resolved(captchaResponse:string){
+    this.captcha=captchaResponse
+
   }
 }

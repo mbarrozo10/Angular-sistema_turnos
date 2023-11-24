@@ -15,13 +15,26 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { FechaPipe } from '../../pipes/fecha.pipe';
-
+import { ListaModule } from './lista/lista.module';
+import { ListaComponent } from './lista/lista.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { NuevoTurnoComponent } from './nuevo-turno/nuevo-turno.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { HoraPipe } from 'src/app/pipes/hora.pipe';
 @NgModule({
   declarations: [
     VistaPacienteComponent,
     VistaEspecialistaComponent,
-    FechaPipe
-
+    ListaComponent,
+    FechaPipe,
+    NuevoTurnoComponent,
+    HoraPipe
   ],
   imports: [
     CommonModule,
@@ -35,7 +48,23 @@ import { FechaPipe } from '../../pipes/fecha.pipe';
     MatDatepickerModule,
     MatNativeDateModule,
     MatGridListModule,
-    MatListModule
-  ]
+    MatListModule,
+    MatGridListModule,
+    MatCardModule,
+    MatInputModule,
+    MatSelectModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatButtonToggleModule,
+    MatToolbarModule,
+    MatTableModule,
+    MatPaginatorModule,
+    ListaModule,
+    MatMenuModule
+  ],
+  exports: [],
+  // providers: [FechaPipe]
 })
 export class TurnosModule { }

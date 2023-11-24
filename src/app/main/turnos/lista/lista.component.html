@@ -1,0 +1,120 @@
+
+<mat-form-field>
+  <mat-label>Seleccione una especialidad</mat-label>
+  <mat-select [(value)]="selected" (selectionChange)="onSelectionChange()">
+    <mat-option selected value="">Todas</mat-option>
+    <mat-option *ngFor="let x of especialidades" [value]="x">{{x}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div [hidden]="!VerificarUsuario()">
+<mat-form-field>
+  <mat-label>Seleccione un especialista</mat-label>
+  <mat-select [(value)]="selectedEs" (selectionChange)="onSelectionChangeEspecialista()">
+    <mat-option selected value="">Todos</mat-option>
+    <mat-option *ngFor="let x of especialistas" [value]="x">{{x.nombre}} {{x.apellido}}</mat-option>
+  </mat-select>
+</mat-form-field>
+</div>
+<div [hidden]="VerificarUsuario()">
+<mat-form-field>
+  <mat-label>Seleccione un paciente</mat-label>
+  <mat-select [(value)]="selectedEs" (selectionChange)="onSelectionChangePaciente()">
+    <mat-option selected value="">Todos</mat-option>
+    <mat-option *ngFor="let x of pacientes" [value]="x">{{x.nombre}} {{x.apellido}}</mat-option>
+  </mat-select>
+</mat-form-field>
+</div>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+      <ng-container matColumnDef="doctor">
+        <th mat-header-cell *matHeaderCellDef> Doctor </th>
+        <td mat-cell *matCellDef="let element"> {{element['doctor']}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="especialidad">
+        <th mat-header-cell *matHeaderCellDef> Especialidad </th>
+        <td mat-cell *matCellDef="let element"> {{element.especialidad}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef> Fecha </th>
+        <td mat-cell *matCellDef="let element"> {{element.fecha | fecha}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="horario">
+        <th mat-header-cell *matHeaderCellDef> Horario </th>
+        <td mat-cell *matCellDef="let element"> {{element.horario}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="paciente">
+        <th mat-header-cell *matHeaderCellDef> Paciente </th>
+        <td mat-cell *matCellDef="let element"> {{element.paciente}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="comentario">
+        <th mat-header-cell *matHeaderCellDef> Comentario </th>
+        <td mat-cell *matCellDef="let element"> {{element.comentario}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="tomar">
+        <th mat-header-cell *matHeaderCellDef> Tomar </th>
+        <td mat-cell *matCellDef="let elemento" >
+          <div [hidden]="!VerificarAgregar(elemento)">
+            <button mat-icon-button color="primary" (click)="tomarTurnos(elemento, 'confirmado')">
+                <mat-icon>add</mat-icon>
+              </button>
+          </div>
+        </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="cancelar">
+        <th mat-header-cell *matHeaderCellDef> Cancelar </th>
+        <td mat-cell *matCellDef="let elemento" >
+          <div [hidden]="VerificarCancelar(elemento)">
+            <button mat-icon-button color="primary" (click)="tomarTurnos(elemento, 'Cancelado')">
+                <mat-icon>cancel</mat-icon>
+              </button>
+          </div>
+        </td>
+      </ng-container>
+      
+
+      <ng-container matColumnDef="rechazar">
+        <th mat-header-cell *matHeaderCellDef> Rechazar </th>
+        <td mat-cell *matCellDef="let elemento" >
+          <div [hidden]="!VerificarRechazar(elemento)">
+            <button mat-icon-button color="primary" (click)="tomarTurnos(elemento,'rechazado')">
+                <mat-icon>cancel</mat-icon>
+              </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="finalizar">
+        <th mat-header-cell *matHeaderCellDef> Finalizar </th>
+        <td mat-cell *matCellDef="let elemento" >
+          <div [hidden]="!VerificarFinalizar(elemento)">
+            <button mat-icon-button color="primary" (click)="tomarTurnos(elemento,'finalizado')">
+                <mat-icon>done</mat-icon>
+              </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>

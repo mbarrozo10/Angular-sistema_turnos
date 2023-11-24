@@ -15,10 +15,16 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { PerfilComponent } from './perfil/perfil.component';
 import { TurnosComponent } from './turnos/turnos.component';
 import { FechaPipe } from '../pipes/fecha.pipe';
 import { HomeComponent } from './home/home.component';
+import { ListaComponent } from './turnos/lista/lista.component';
+import { ListaModule } from './turnos/lista/lista.module';
+import { PacientesComponent } from './pacientes/pacientes.component';
+import { FechaDosPipe } from '../pipes/fecha-dos.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +33,9 @@ import { HomeComponent } from './home/home.component';
     PerfilComponent,
     TurnosComponent,
     HomeComponent,
-    // FechaPipe
+    PacientesComponent,
+    // ListaComponent,
+    FechaDosPipe
   ],
   imports: [
     CommonModule,
@@ -42,7 +50,11 @@ import { HomeComponent } from './home/home.component';
     MatButtonModule,
     MatTabsModule,
     MatButtonToggleModule,
-    MatToolbarModule
-  ]
+    MatToolbarModule,
+    MatTableModule,
+    MatPaginatorModule,
+    ListaModule
+  ],
+  // providers:[FechaPipe]
 })
 export class MainModule { }

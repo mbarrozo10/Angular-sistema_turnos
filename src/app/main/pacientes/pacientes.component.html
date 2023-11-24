@@ -1,0 +1,55 @@
+   <body>
+    <h1>Mis pacientes</h1>
+   <mat-grid-list cols="3" rowHeight="800px">
+        <mat-grid-tile *ngFor="let usuario of usuariosMostrar">
+        
+    <mat-card class="example-card">
+        <mat-card-header>
+        <mat-card-title>{{ usuario.nombre }} {{usuario.apellido}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="{{usuario['img1']}}" alt="">
+      <mat-card-content>
+        <p>Edad: {{ usuario.edad }}</p>
+        <p>DNI: {{ usuario.dni }}</p>
+        <p>Correo:{{ usuario.correo }} </p>
+        <h4>Turnos:</h4>
+        <mat-list *ngFor="let turno of getTurnos(usuario.correo)">
+          <mat-list-item >
+            Fecha:  {{ turno.fecha | fechaDos }}
+          </mat-list-item>
+          <mat-list-item >
+            Especialidad: {{turno.especialidad}}
+          </mat-list-item>
+          <mat-list-item >
+            Horario: {{turno.horario}}
+          </mat-list-item>
+          <ng-container *ngIf="verificarExtra(turno)">
+            <mat-list>
+             <h5>Historial:</h5> 
+              <mat-list-item>
+                Altura: {{turno.historial.altura}}
+              </mat-list-item>
+              <mat-list-item>
+                Peso: {{turno.historial.peso}}
+              </mat-list-item>
+              <mat-list-item>
+                Temperatura: {{turno.historial.temperatura}}
+              </mat-list-item>
+              <mat-list-item>
+                Presion: {{turno.historial.presion}}
+              </mat-list-item>
+              <mat-list-item>
+                Clave: {{turno.historial.especial.clave}} Valor: {{turno.historial.especial.valor}}
+              </mat-list-item>
+            </mat-list>
+          </ng-container>
+          <ng-container *ngIf="!verificarExtra(turno)">
+            <h3>Sin historial</h3>
+          </ng-container>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
+
+</body>

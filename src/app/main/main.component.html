@@ -23,6 +23,10 @@
             <div>
               <button id="salir" mat-menu-item routerLink="perfil">Mi Perfil</button>
             </div>
+            <div  [hidden]="espec">
+              <button id="salir" mat-menu-item routerLink="pacientes" >Pacientes</button>
+            </div>
+
             <div  [hidden]="admin">
               <button id="salir" mat-menu-item routerLink="admin" >Consola Admin</button>
             </div>

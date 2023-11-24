@@ -1,0 +1,25 @@
+// img{
+//     width: 100px;
+//     height: 100px;
+// }
+
+.example-card {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    height: 800px;
+    overflow: auto
+  }
+  
+  .mat-card-content {
+    flex-grow: 1; 
+    height: 400px;
+}
+.mat-grid-tile {
+    // display: flex;
+    align-items: stretch; /* Alinear los elementos secundarios para que se estiren verticalmente */
+  }
+ 
+  body {
+    background-color: #545454;
+  }

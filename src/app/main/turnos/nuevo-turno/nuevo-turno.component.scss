@@ -1,0 +1,20 @@
+.botonEs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img{
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.boton{
+    height: 80px;
+    margin-right: 10px;
+}
+
+.botonEspe{
+    margin-left: 10px;
+    height: 100px;
+}

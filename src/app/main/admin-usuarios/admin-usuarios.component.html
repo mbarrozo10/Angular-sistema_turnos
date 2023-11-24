@@ -7,6 +7,7 @@
             <mat-card class="selector">
                 <mat-card-content>
                     <h4>Tipo de usuarios</h4>
+                    <div class="card1">
                         <mat-form-field>
                         <mat-label>Tipo</mat-label>
                         <mat-select  [(value)]="selectedValue" (selectionChange)="onSelectChange()">
@@ -14,9 +15,12 @@
                             <mat-option  value="admin">Administradores </mat-option>
                             <mat-option  value="especialista">Especialistas </mat-option>
                         </mat-select>
-                        </mat-form-field>                   
+                        </mat-form-field>      
+                        <button id="excel" mat-raised-button (click)="Descargar()">Exportar usuarios a Excel</button>        
+                    </div>     
                 </mat-card-content>
             </mat-card>
+            
         </div>
  </mat-grid-tile>
     <mat-grid-tile rowspan="10" class="lista">
