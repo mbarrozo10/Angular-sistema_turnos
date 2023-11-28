@@ -11,23 +11,8 @@ export class ExcelService {
   constructor() { }
 
   generateReportWithDict( data: any[], filename: string) {
-    // const customHeaders=[{nombre: 'nombre', key:'nombre'},{nombre: 'apellido', key:"apellido"},{nombre: 'correo',key:'correo'},{nombre: 'tipo', key:'tipo'}]
-    // let worksheetData: any[] = [];
-
-    // Object(data).forEach( (item: any) => {
-    //   let worksheetItem = Object();
-    //   customHeaders.forEach( header => {
-    //     worksheetItem[header.nombre] = item[header.key];
-    //   })
-    //   worksheetData.push(worksheetItem)
-    // })
-
-    // // excel file
-    // let workbook = XLSX.utils.book_new();
-    // let worksheet = XLSX.utils.json_to_sheet(worksheetData);
-    // XLSX.utils.book_append_sheet(workbook, worksheet, "Hoja 1")
-    // XLSX.writeFileXLSX(workbook, filename, {});
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+    let nuevoArray = data.map(({ ['pass']: _, ...restoDelObjeto }) => restoDelObjeto);
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(nuevoArray);
     const workbook: XLSX.WorkBook = {Sheets: {'data': worksheet},SheetNames: ['data']};
     const excelBuffer:any = XLSX.write(workbook,{bookType:'xlsx',type:'array'})
     this.saveAsExcel(excelBuffer,filename);

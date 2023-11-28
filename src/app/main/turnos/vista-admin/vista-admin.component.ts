@@ -1,17 +1,19 @@
 import { Component, ViewChild } from '@angular/core';
-import { Firestore, collection, collectionData, doc, getFirestore, onSnapshot, query, updateDoc, where } from "@angular/fire/firestore";
-import { UserService } from "src/app/services/user.service";
-import Swal from "sweetalert2";
-import { ITurnos } from '../vista-paciente/vista-paciente.component';
-import { MatTableDataSource, MatTableModule } from "@angular/material/table";
+import { Firestore, collection, collectionData, doc, getFirestore, onSnapshot, query, updateDoc, where } from '@angular/fire/firestore';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatStepper } from '@angular/material/stepper';
+import { MatTableDataSource } from '@angular/material/table';
+import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
+import { ITurnos } from '../vista-paciente/vista-paciente.component';
+
 @Component({
-  selector: 'app-nuevo-turno',
-  templateUrl: './nuevo-turno.component.html',
-  styleUrls: ['./nuevo-turno.component.scss']
+  selector: 'app-vista-admin',
+  templateUrl: './vista-admin.component.html',
+  styleUrls: ['./vista-admin.component.scss']
 })
-export class NuevoTurnoComponent {
+export class VistaAdminComponent {
+  pacientes:any[]=[]
   especialistas:any[]= [];
   turnos:any[]= [];
   especialidades:any[]= [];
@@ -24,6 +26,7 @@ export class NuevoTurnoComponent {
   textoFecha="Fecha"
   usuario:any
   p:any
+  seleccion:any
   dataSource:any=new MatTableDataSource<ITurnos>(this.turnos);
   @ViewChild(MatPaginator) paginator: any;
   displayedColumns: string[] = ['doctor', 'especialidad', 'fecha','horario','estado','tomar'];
@@ -43,8 +46,10 @@ export class NuevoTurnoComponent {
     }
     collectionData(collection(this.firestore,"usuarios")).subscribe(data =>{
       this.especialistas = data.filter(item => item['tipo']=="especialista")
-      this.usuario= data.filter(item => item['correo']==this.auth.retornarUsuario())
-      console.log(this.especialistas)
+    });
+
+    collectionData(collection(this.firestore,"usuarios")).subscribe(data =>{
+     this.pacientes = data.filter(item => item['tipo']=="user")
     });
     
     collectionData(collection(this.firestore,"especialidades")).subscribe(data =>{
@@ -102,7 +107,7 @@ export class NuevoTurnoComponent {
           const db= getFirestore();
           const data={
             estado: "a confirmar",
-            paciente: this.auth.retornarUsuario()
+            paciente: this.usuario['correo']
           }
              const docref= doc(db,"turnos",borrables[0]);
              updateDoc(docref,data)
@@ -127,5 +132,9 @@ export class NuevoTurnoComponent {
     console.log(array)
     this.dataSource=new MatTableDataSource<ITurnos>(array)
     this.turno=false
+  }
+
+  seleccionar(){
+    this.usuario=this.seleccion
   }
 }

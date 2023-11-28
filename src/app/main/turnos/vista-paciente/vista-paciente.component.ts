@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./vista-paciente.component.scss'],
 })
 export class VistaPacienteComponent implements OnInit {
-  displayedColumns: string[] = ['doctor', 'especialidad', 'estado', 'fecha','horario', 'paciente','comentario' ,'cancelar','encuesta'];
+  displayedColumns: string[] = ['doctor', 'especialidad', 'estado', 'fecha','horario', 'paciente','comentario','altura','peso','presion','temperatura','clave','cantidad' ,'cancelar','encuesta'];
   turnos:any[]=[]
   dataSource:any=new MatTableDataSource<ITurnos>(this.turnos);
   selected:string=""
@@ -21,6 +21,13 @@ export class VistaPacienteComponent implements OnInit {
   especialidades:any[]=[]
   especialistas:any[]=[]
   @ViewChild(MatPaginator) paginator: any;
+  fil: string;
+  filA: string;
+  filPe: string;
+  filT: string;
+  filP: string;
+  filC: string;
+  filCant: string;
 
   constructor(private firestore: Firestore, private auth: UserService, public router:Router){}
   ngAfterViewInit() {
@@ -39,6 +46,7 @@ export class VistaPacienteComponent implements OnInit {
       })
       console.log(this.turnos)
       this.dataSource=new MatTableDataSource<ITurnos>(this.turnos)
+      this.dataSource.paginator = this.paginator;
       if(this.p)this.p()
     })
     collectionData(collection(this.firestore,"especialidades")).subscribe(data =>{
@@ -107,6 +115,7 @@ export class VistaPacienteComponent implements OnInit {
       if(turno.especialidad==this.selected)
       array.push(turno)})
     this.dataSource=new MatTableDataSource<ITurnos>(array)
+    this.dataSource.paginator = this.paginator;
 
   }
   onSelectionChangeEspecialista(){
@@ -117,6 +126,7 @@ export class VistaPacienteComponent implements OnInit {
       if(turno.doctor==this.selectedEs['correo'])
       array.push(turno)})
     this.dataSource=new MatTableDataSource<ITurnos>(array)
+    this.dataSource.paginator = this.paginator;
   }
 
   Mostrar(elemento:any){
@@ -217,6 +227,55 @@ export class VistaPacienteComponent implements OnInit {
 
   VerificarEncuesta(elemento: any){
     return elemento['estado'] !="finalizado"
+  }
+
+  filtro(filtro:string){
+    switch(filtro){
+      case 'estado':
+        if(this.fil==""){
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos)
+        }else{
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos.filter(x => x['estado']==this.fil))
+        }
+      break;
+      case 'altura':
+        if(this.filA==""){
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos)
+        }else{
+        this.dataSource=new MatTableDataSource<ITurnos>(this.turnos.filter(x => x['altura']==this.filA))}
+        break;
+      case 'peso':
+        if(this.filPe==""){
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos)
+        }else{
+        this.dataSource=new MatTableDataSource<ITurnos>(this.turnos.filter(x => x['peso']==this.filPe))}
+        break;
+      case 'temperatura':
+        if(this.filT==""){
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos)
+        }else{
+        this.dataSource=new MatTableDataSource<ITurnos>(this.turnos.filter(x => x['temperatura']==this.filT))}
+        break;
+      case 'presion':
+        if(this.filP==""){
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos)
+        }else{
+        this.dataSource=new MatTableDataSource<ITurnos>(this.turnos.filter(x => x['presion']==this.filP))}
+        break;
+      case 'clave':
+        if(this.filC==""){
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos)
+        }else{
+        this.dataSource=new MatTableDataSource<ITurnos>(this.turnos.filter(x => x['clave']==this.filC))}
+        break;
+      case 'cantidad':
+        if(this.filCant==""){
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos)
+        }else{
+        this.dataSource=new MatTableDataSource<ITurnos>(this.turnos.filter(x => x['cantidad']==this.filCant))}
+        break
+    }
+    this.dataSource.paginator = this.paginator;
   }
 }
 export interface ITurnos {

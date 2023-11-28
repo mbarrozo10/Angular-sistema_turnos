@@ -65,11 +65,17 @@
     </div>
 </ng-container>
 <ng-container *ngIf="!eleccion">
-    <div class="seleccion">
-        <img src="../../assets/fondo.jpg" alt="">
+    <div class="seleccion" @fadeIn>
+        <!-- <img src="../../assets/fondo.jpg" alt=""> -->
+        <h1>Elija el tipo de usuario</h1>
         <div class="test">
-            <button mat-button class="button2" (click)="AbrirRegistro('especialista')"></button>
-            <button mat-button class="button2" (click)="AbrirRegistro('usuario')"></button>
+            
+            <button mat-button class="button2" (click)="AbrirRegistro('especialista')">
+                <img src="../../assets/foto1.png" alt="">
+            </button>
+            <button mat-button class="button2" (click)="AbrirRegistro('usuario')">
+                <img src="../../assets/foto2.png" alt="">
+            </button>
         </div>
     </div>
 </ng-container>

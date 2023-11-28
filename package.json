@@ -25,6 +25,7 @@
     "file-saver": "^2.0.5",
     "ng-hcaptcha": "^2.2.0",
     "ng-recaptcha": "^12.0.2",
+    "pdfmake": "^0.2.8",
     "recaptcha": "^1.2.1",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.7.32",

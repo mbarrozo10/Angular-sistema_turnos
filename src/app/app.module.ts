@@ -23,8 +23,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
 import { RecaptchaModule } from "ng-recaptcha";
 import { NgHcaptchaModule } from 'ng-hcaptcha';
-import { HoraPipe } from './pipes/hora.pipe';
-import { FechaDosPipe } from './pipes/fecha-dos.pipe';
 @NgModule({
   declarations: [
     AppComponent,

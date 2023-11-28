@@ -27,6 +27,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { NuevoTurnoComponent } from './nuevo-turno/nuevo-turno.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { HoraPipe } from 'src/app/pipes/hora.pipe';
+import { VistaAdminComponent } from './vista-admin/vista-admin.component';
 @NgModule({
   declarations: [
     VistaPacienteComponent,
@@ -34,7 +35,8 @@ import { HoraPipe } from 'src/app/pipes/hora.pipe';
     ListaComponent,
     FechaPipe,
     NuevoTurnoComponent,
-    HoraPipe
+    HoraPipe,
+    VistaAdminComponent
   ],
   imports: [
     CommonModule,

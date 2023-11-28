@@ -15,9 +15,10 @@ export class TurnosComponent implements OnInit {
   ngOnInit(): void {
     if(this.auth.userUsed['tipo']== 'user'){
       this.router.navigateByUrl('main/turnos/paciente', {replaceUrl: true});
-    }else{
+    }else if(this.auth.userUsed['tipo']== 'especialista'){
       this.router.navigateByUrl('main/turnos/especialista', {replaceUrl: true});
-    }
+    }else {this.router.navigateByUrl('main/turnos/admin', {replaceUrl: true})};
+
   }
 
 }

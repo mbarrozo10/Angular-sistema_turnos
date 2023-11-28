@@ -23,29 +23,24 @@
           <mat-list-item >
             Horario: {{turno.horario}}
           </mat-list-item>
-          <ng-container *ngIf="verificarExtra(turno)">
             <mat-list>
              <h5>Historial:</h5> 
               <mat-list-item>
-                Altura: {{turno.historial.altura}}
+                Altura: {{turno.altura}}
               </mat-list-item>
               <mat-list-item>
-                Peso: {{turno.historial.peso}}
+                Peso: {{turno.peso}}
               </mat-list-item>
               <mat-list-item>
-                Temperatura: {{turno.historial.temperatura}}
+                Temperatura: {{turno.temperatura}}
               </mat-list-item>
               <mat-list-item>
-                Presion: {{turno.historial.presion}}
+                Presion: {{turno.presion}}
               </mat-list-item>
               <mat-list-item>
-                Clave: {{turno.historial.especial.clave}} Valor: {{turno.historial.especial.valor}}
+                Clave: {{turno.clave}} Valor: {{turno.cantidad}}
               </mat-list-item>
             </mat-list>
-          </ng-container>
-          <ng-container *ngIf="!verificarExtra(turno)">
-            <h3>Sin historial</h3>
-          </ng-container>
         </mat-list>
       </mat-card-content>
     </mat-card>

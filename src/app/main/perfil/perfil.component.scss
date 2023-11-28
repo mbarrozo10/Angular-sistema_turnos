@@ -12,45 +12,48 @@
     margin-top: 10px;
     width: 60%;
     height: 80%;
-    .image-container {
-        position: relative;
-        width: 500px; 
-        height: 500px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 30px;
-      }
-      
-      .img-front {
-        position: absolute;
-        z-index: 2; /* Coloca esta imagen en la parte superior */
-        border: 2px solid white;
-        width: 60%; /* O ajusta el ancho según tus necesidades */
-        height: 60%; /* O ajusta la altura según tus necesidades */
+//     .image-container {
+//         // position: relative;
+//         width: 500px; 
+//         height: 500px;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         margin-bottom: 30px;
+//       }
+     
+  
+//     // mat-card-header{
+//     //     justify-content: center;
+//     // }
+//     // mat-card-content{
+//     //     width: 80%;
+//     //     margin: 0 auto;
+//     //     margin-left: 10px;
+//     //     margin-right: 10px;
+//     // }
+// }
+// .mat-card-header{
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+}
+
+.test{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+    .img-front {
+        border: 2px solid black;
+        width: 60%; 
+        height: 60%;
         border-radius: 50%;
         width: 350px;
         height: 300px;
         margin-bottom: 20px;
         margin-top: 20px;
       }
-      
-      .img-back {
-        position: absolute;
-        z-index: 1; /* Coloca esta imagen detrás de la imagen frontal */
-        width: 100%; /* O ajusta el ancho según tus necesidades */
-        height: 100%; /* O ajusta la altura según tus necesidades */
-      }
-  
-    mat-card-header{
-        justify-content: center;
-    }
-    mat-card-content{
-        width: 80%;
-        margin: 0 auto;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
 }
 
 .container{

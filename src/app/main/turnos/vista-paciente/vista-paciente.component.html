@@ -1,5 +1,4 @@
 <h1>Mis Turnos</h1>
-
 <mat-grid-list cols="6" rowHeight="2:1">
   <mat-grid-tile>
     <button mat-raised-button color="primary" (click)="nuevoTurno()">Nuevo turno</button>
@@ -22,9 +21,55 @@
       </mat-select>
     </mat-form-field>
   </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field>
+      <mat-label>Seleccione un estado</mat-label>
+      <mat-select [(value)]="fil" (selectionChange)="filtro('estado')">
+        <mat-option selected value="">Todos</mat-option>
+        <mat-option value="libre">Libre</mat-option>
+        <mat-option value="a confirmar">A confirmar</mat-option>
+        <mat-option value="finalizado">Finalizado</mat-option>
+        <mat-option value="Cancelado">Cancelado</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="example-full-width">
+      <mat-label>Altura</mat-label>
+      <input matInput placeholder="Ingrese altura" [(ngModel)]="filA" (change)="filtro('altura')">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="example-full-width">
+      <mat-label>Peso</mat-label>
+      <input matInput placeholder="Ingrese peso" [(ngModel)]="filPe" (change)="filtro('peso')">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="example-full-width">
+      <mat-label>Presion</mat-label>
+      <input matInput placeholder="Ingrese presion" [(ngModel)]="filP" (change)="filtro('presion')">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="example-full-width">
+      <mat-label>Temperatura</mat-label>
+      <input matInput placeholder="Ingrese temperatura" [(ngModel)]="filT" (change)="filtro('temperatura')">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="example-full-width">
+      <mat-label>Clave</mat-label>
+      <input matInput placeholder="Ingrese clave" [(ngModel)]="filC" (change)="filtro('clave')">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="example-full-width">
+      <mat-label>Cantidad</mat-label>
+      <input matInput type="number" placeholder="Ingrese cantidad" [(ngModel)]="filCant" (change)="filtro('cantidad')">
+    </mat-form-field>
+  </mat-grid-tile>
 </mat-grid-list>
-
-
 
 
 
@@ -66,6 +111,35 @@
         <td mat-cell *matCellDef="let element"> {{element.comentario}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="altura">
+        <th mat-header-cell *matHeaderCellDef> Altura </th>
+        <td mat-cell *matCellDef="let element"> {{element.altura}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="peso">
+        <th mat-header-cell *matHeaderCellDef> Peso </th>
+        <td mat-cell *matCellDef="let element"> {{element.peso}} </td>
+      </ng-container> 
+
+      <ng-container matColumnDef="temperatura">
+        <th mat-header-cell *matHeaderCellDef> Temperatura </th>
+        <td mat-cell *matCellDef="let element"> {{element.temperatura}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="presion">
+        <th mat-header-cell *matHeaderCellDef> Presion </th>
+        <td mat-cell *matCellDef="let element"> {{element.presion}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="clave">
+        <th mat-header-cell *matHeaderCellDef> Clave </th>
+        <td mat-cell *matCellDef="let element"> {{element.clave}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cantidad">
+        <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+        <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+      </ng-container>
       <ng-container matColumnDef="cancelar">
         <th mat-header-cell *matHeaderCellDef>Cancelar</th>
         <td mat-cell *matCellDef="let elemento" >

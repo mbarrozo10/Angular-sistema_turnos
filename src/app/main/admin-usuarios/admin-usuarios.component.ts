@@ -18,8 +18,9 @@ export class AdminUsuariosComponent implements OnInit {
   selectedValue="usuario"
   p:any;
   alternar:boolean=true;
-
+  turnos:any[]=[]
     ngOnInit(): void {
+      collectionData(collection(this.firestore,'turnos')).subscribe(data => {this.turnos=data})
       const place= collection(this.firestore,'usuarios');
       collectionData(place).subscribe(data =>
         {
@@ -100,6 +101,23 @@ export class AdminUsuariosComponent implements OnInit {
     }
     Descargar(){
       this.excel.generateReportWithDict(this.usuariosExportar, 'bkp')
+    }
+
+    guardarExcel(usuario:any){
+      if(usuario['tipo']=="user")
+      {
+        const array=[]
+        this.turnos.forEach(x =>{
+        if(x['paciente']== usuario['correo'])
+        array.push(x);
+      })
+      this.excel.generateReportWithDict(array, "turnos_" + usuario['nombre'])
+    }
+    else{
+      Swal.fire({
+        title:"Este usuario no tiene turnos"
+      })
+    }
     }
      
 }

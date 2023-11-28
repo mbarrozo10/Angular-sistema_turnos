@@ -3,13 +3,24 @@ import { UserService } from '../services/user.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Firestore, addDoc, collection, collectionData } from '@angular/fire/firestore';
-import { getDownloadURL, ref, uploadBytes,Storage } from '@angular/fire/storage';
 import { UserCredential } from '@angular/fire/auth';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
+const fadeIn= trigger('fadeIn',[
+  state('void', style({
+    transform: 'translateY(1000px)',
+    opacity: 0
+  })),
+  transition('void => *', animate('0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940)')),
+  state('*', style({
+    transform: 'translateY(0)',
+    opacity: 1
+  })),
+]) 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],animations: [fadeIn]
 })
 export class LoginComponent implements OnInit {
    

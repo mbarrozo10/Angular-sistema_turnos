@@ -11,7 +11,7 @@
                         <mat-form-field>
                         <mat-label>Tipo</mat-label>
                         <mat-select  [(value)]="selectedValue" (selectionChange)="onSelectChange()">
-                            <mat-option  value="usuario" >Usuarios </mat-option>
+                            <mat-option  value="usuario" >Pacientes </mat-option>
                             <mat-option  value="admin">Administradores </mat-option>
                             <mat-option  value="especialista">Especialistas </mat-option>
                         </mat-select>
@@ -33,6 +33,12 @@
                 <div [hidden]="!alternar">
                     <mat-list>
                     <mat-list-item *ngFor="let x of listaUsuarios">
+                       
+                          <span class="spanB" matListItemAvatar >
+                            <button class="fab" (click)="guardarExcel(x)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                                <img class="img" src="{{x['img'] || x['img1']}}  " alt="">
+                              </button>
+                          </span>
                         <span matListItemTitle>{{x.nombre}} {{x.apellido}}</span>
                         <span matListItemLine>Correo: {{x.correo}}</span>
                         <span matListItemLine>Edad: {{x.edad}}</span>
@@ -43,6 +49,11 @@
                     <div [hidden]="alternar">
                     <mat-list>
                         <mat-list-item *ngFor="let x of especialistas">
+                          <span class="spanB" matListItemAvatar >
+                            <button class="fab" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                                <img class="img" src="{{x['img']}}" alt="">
+                              </button>
+                          </span>
                             <span matListItemTitle>{{x.nombre}} {{x.apellido}}</span>
                             <span matListItemLine>Correo: {{x.correo}}</span>
                             <span matListItemLine>Edad: {{x.edad}}</span>

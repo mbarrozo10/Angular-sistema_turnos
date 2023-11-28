@@ -160,22 +160,27 @@ option {
 
 .seleccion{
 	display: flex;
-  flex-direction: column; /* Puedes usar 'row' si quieres que los botones estén uno al lado del otro horizontalmente */
-  align-items: stretch;
-  height: 100vh;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
+  .test {
+	width: 60%;
+	height: 60%;
+	flex: 1; /* Esto hace que 'test' ocupe todo el espacio disponible */
+	display: flex;
+	// justify-content: space-between; /* Esto distribuye los botones a ambos lados del contenedor 'test' */
+	// height: 60%;
 	img{
 		width: 100%;
 		height: 100%;
-		position: absolute;
 	}
-}
-.test {
-	flex: 1; /* Esto hace que 'test' ocupe todo el espacio disponible */
-	display: flex;
-	justify-content: space-between; /* Esto distribuye los botones a ambos lados del contenedor 'test' */
-	height: 1000px;
   }
-  
+}
+
+  h1{
+	font-size: 30px;
+	color: white;
+  }
 
  .button2{
 	height: 100%;

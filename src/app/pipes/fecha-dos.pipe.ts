@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FechaDosPipe implements PipeTransform {
 
   transform(value: string): string {
-    if (!value) {
-      return '';
+    if (!value || value.includes('/')) {
+      return value;
     }
 
     const parsedDate = new Date(value);

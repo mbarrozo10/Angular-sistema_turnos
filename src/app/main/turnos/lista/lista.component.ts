@@ -16,15 +16,23 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./lista.component.scss'],
 })
 export class ListaComponent implements OnInit{
-  displayedColumns: string[] = ['doctor', 'especialidad', 'estado', 'fecha','horario','paciente','comentario', 'tomar', 'cancelar', 'rechazar', 'finalizar'];
+  displayedColumns: string[] = ['doctor', 'especialidad', 'estado', 'fecha','horario','paciente','comentario','altura','peso','presion','temperatura','clave','cantidad', 'tomar', 'cancelar', 'rechazar', 'finalizar'];
   turnos:any[]=[]
   dataSource:any=new MatTableDataSource<ITurnos>(this.turnos);
   usuario:any;
-  selected:any
-  selectedEs:any
+  selected:any=""
+  selectedEs:any=""
   especialistas:any[]=[];
   especialidades:any[]=[];
   pacientes:any[]=[];
+  fil:string=''
+  filA:string=''
+  filT:string=''
+  filP:string=''
+  filPe:string=''
+  filC:string=''
+  filCant:string=''
+
   @ViewChild(MatPaginator) paginator?: MatPaginator;
 
   constructor(private firestore: Firestore, private auth: UserService, public dialog: MatDialog){}
@@ -225,6 +233,7 @@ export class ListaComponent implements OnInit{
       if(turno.especialidad==this.selected)
       array.push(turno)})
     this.dataSource=new MatTableDataSource<ITurnos>(array)
+    this.dataSource.paginator = this.paginator;
 
   }
   onSelectionChangeEspecialista(){
@@ -235,6 +244,56 @@ export class ListaComponent implements OnInit{
       if(turno.doctor==this.selectedEs['correo'])
       array.push(turno)})
     this.dataSource=new MatTableDataSource<ITurnos>(array)
+    this.dataSource.paginator = this.paginator;
+  }
+
+  filtro(filtro:string){
+    switch(filtro){
+      case 'estado':
+        if(this.fil==""){
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos)
+        }else{
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos.filter(x => x['estado']==this.fil))
+        }
+      break;
+      case 'altura':
+        if(this.filA==""){
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos)
+        }else{
+        this.dataSource=new MatTableDataSource<ITurnos>(this.turnos.filter(x => x['altura']==this.filA))}
+        break;
+      case 'peso':
+        if(this.filPe==""){
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos)
+        }else{
+        this.dataSource=new MatTableDataSource<ITurnos>(this.turnos.filter(x => x['peso']==this.filPe))}
+        break;
+      case 'temperatura':
+        if(this.filT==""){
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos)
+        }else{
+        this.dataSource=new MatTableDataSource<ITurnos>(this.turnos.filter(x => x['temperatura']==this.filT))}
+        break;
+      case 'presion':
+        if(this.filP==""){
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos)
+        }else{
+        this.dataSource=new MatTableDataSource<ITurnos>(this.turnos.filter(x => x['presion']==this.filP))}
+        break;
+      case 'clave':
+        if(this.filC==""){
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos)
+        }else{
+        this.dataSource=new MatTableDataSource<ITurnos>(this.turnos.filter(x => x['clave']==this.filC))}
+        break;
+      case 'cantidad':
+        if(this.filCant==""){
+          this.dataSource=new MatTableDataSource<ITurnos>(this.turnos)
+        }else{
+        this.dataSource=new MatTableDataSource<ITurnos>(this.turnos.filter(x => x['cantidad']==this.filCant))}
+        break
+    }
+    this.dataSource.paginator = this.paginator;
   }
 
   onSelectionChangePaciente(){
@@ -272,11 +331,12 @@ export class DialogElementsExampleDialog  implements OnInit{
   peso: string=""
   temperatura: string=""
   presion:string=""
-  datosDentistas:any={clave:false, valor:3}
-  datosClinica:any={clave:"medicamento", valor:10}
-  datosCirugia:any={clave:false, valor:10}
-  datosOftalmologo:any={clave:false, valor:0}
+  datosDentistas:any={clave:'caries', cantidad:3, valor:false}
+  datosClinica:any={clave:"medicamento", cantidad:10, valor:false}
+  datosCirugia:any={clave:'reposo', cantidad:10, valor:false}
+  datosOftalmologo:any={clave:'aumento', cantidad:0, valor:false}
   mostrador:string="";
+
   p:any
   constructor(
     public ref: MatDialogRef <DialogElementsExampleDialog>,
@@ -292,39 +352,47 @@ export class DialogElementsExampleDialog  implements OnInit{
     switch(this.mostrador){
       case "Cirugia":
          historial={
+          estado:"finalizado",
           altura: this.altura,
           peso:this.peso,
           presion:this.presion,
           temperatura:this.temperatura,
-          especial: this.datosCirugia
+          clave: this.datosCirugia['clave'],
+          valor: this.datosCirugia['cantidad']
         }
         break;
       case "Clinica":
          historial={
+          estado:"finalizado",
           altura: this.altura,
           peso:this.peso,
           presion:this.presion,
           temperatura:this.temperatura,
-          especial:this.datosClinica
-        }
+          clave: this.datosClinica['clave'],
+          valor: this.datosClinica['cantidad']
+                }
         break;
         case "Odontologia":
          historial={
+          estado:"finalizado",
           altura: this.altura,
           peso:this.peso,
           presion:this.presion,
           temperatura:this.temperatura,
-          especial:this.datosDentistas
-        }
+          clave: this.datosDentistas['clave'],
+          valor: this.datosDentistas['cantidad']
+                }
         break;
         case "Oftalmologia":
          historial={
+          estado:"finalizado",
           altura: this.altura,
           peso:this.peso,
           presion:this.presion,
           temperatura:this.temperatura,
-          especial:this.datosOftalmologo
-        }
+          clave: this.datosOftalmologo['clave'],
+          valor: this.datosOftalmologo['cantidad']  
+              }
         break;
     }
     let borrables:any []=[]
@@ -336,12 +404,9 @@ export class DialogElementsExampleDialog  implements OnInit{
       })
       console.log(borrables)
       const db= getFirestore();
-      const data={
-        historial: historial,
-        estado:"finalizado"
-      }
+      
          const docref= doc(db,"turnos",borrables[0]);
-         updateDoc(docref,data)
+         updateDoc(docref,historial)
          this.ref.close()
      })
   }

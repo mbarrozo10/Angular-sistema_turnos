@@ -27,7 +27,7 @@
       <input type="checkbox" placeholder="" [(ngModel)]="datosDentistas['valor']"  name="caries">
       <mat-form-field class="example-full-width">
         <mat-label>Cantidad de caries</mat-label>
-        <input [disabled]="!datosDentistas['valor']" type="number" matInput placeholder="" [(ngModel)]="datosDentistas['valor']" name="cant">
+        <input [disabled]="!datosDentistas['valor']" type="number" matInput placeholder="" [(ngModel)]="datosDentistas['cantidad']" name="cant">
       </mat-form-field>
     </div>
     <div [hidden]="mostrador!='Clinica'">
@@ -37,7 +37,7 @@
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Cantidad de dias</mat-label>
-      <input type="number" matInput placeholder="" [(ngModel)]="datosClinica['valor']">
+      <input type="number" matInput placeholder="" [(ngModel)]="datosClinica['cantidad']">
     </mat-form-field>
   </div>
   <div [hidden]="mostrador!='Cirugia'">
@@ -45,7 +45,7 @@
     <input type="checkbox" placeholder="" [(ngModel)]="datosCirugia['valor']"  name="reposo">
       <mat-form-field class="example-full-width">
         <mat-label>Cantidad de dias</mat-label>
-        <input [disabled]="!datosCirugia['valor']" type="number" matInput placeholder="" [(ngModel)]="datosCirugia['valor']" name="cantD">
+        <input [disabled]="!datosCirugia['valor']" type="number" matInput placeholder="" [(ngModel)]="datosCirugia['cantidad']" name="cantD">
       </mat-form-field>
   </div>
   <div [hidden]="mostrador!='Oftalmologia'">
@@ -53,7 +53,7 @@
     <input type="checkbox" placeholder="" [(ngModel)]="datosOftalmologo['valor']"  name="aumento">
       <mat-form-field class="example-full-width">
         <mat-label>Cantidad de aumento</mat-label>
-        <input [disabled]="!datosOftalmologo['valor']" type="number" matInput placeholder="" [(ngModel)]="datosOftalmologo['valor']" name="cantDA">
+        <input [disabled]="!datosOftalmologo['valor']" type="number" matInput placeholder="" [(ngModel)]="datosOftalmologo['cantidad']" name="cantDA">
       </mat-form-field>
   </div>
 
