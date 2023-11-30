@@ -24,7 +24,7 @@
 					<div class="vertical-line"></div>
 					<div class="col2">	
 						<div *ngFor="let x of usuariosMuestra" class="group">
-							<button mat-button (click)="inicioRapido(x.correo,x.pass)" type="submit" class="button2" value="">
+							<button appMargenboton [color]="'red'" mat-button (click)="inicioRapido(x.correo,x.pass)" type="submit" class="button2" value="">
 									<ng-container *ngIf="verificar(x)" >
 										<img class="imagenB" [src]="x.img" alt="">
 									</ng-container>

@@ -23,6 +23,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
 import { RecaptchaModule } from "ng-recaptcha";
 import { NgHcaptchaModule } from 'ng-hcaptcha';
+import { MargenbotonDirective } from './directivas/margenboton.directive';
+import { FilaDirective } from './directivas/fila.directive';
 @NgModule({
   declarations: [
     AppComponent,

@@ -10,9 +10,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
-
+import { MargenbotonDirective } from '../directivas/margenboton.directive';
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent,MargenbotonDirective],
   imports: [
     CommonModule,
     LoginRoutingModule,
